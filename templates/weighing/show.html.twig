@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Weighing {{ id }}!{% endblock %}
+
+
+{% block body %}
+<h1>Weighing {{id}}</h1>
+
+<div>This is the future page to show the details of the weighing number {{id}}</div>
+
+<h3>Details ({{ details|length }})</h3>
+<ul>
+    {% for detail in details %}
+        <li>{{ detail }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {{ encore_entry_link_tags('weighing_show') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('weighing_show') }}
+{% endblock %}
