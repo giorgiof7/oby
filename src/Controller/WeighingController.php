@@ -7,6 +7,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\CacheInterface;
 
 class WeighingController extends AbstractController
 {
@@ -21,19 +22,22 @@ class WeighingController extends AbstractController
     /**
      * @Route("/weighing/show/{id}", name="show_weighing")
      */
-    public function show($id)
+    public function show($id, CacheInterface $cache)
     {
         $details = [
             "belly: 105",
             "weight: 94",
             "leg: 80"
         ];
+        $stringifyDetails = join("|||", $details);
 
-        dump($id, $this);
+        $cachedDetails = $cache->get('details'.md5($stringifyDetails), function () use ($stringifyDetails){
+            return $stringifyDetails;
+        });
 
         return $this->render('weighing/show.html.twig', [
             "id" => $id,
-            "details" => $details
+            "details" => explode("|||", $cachedDetails)
         ]);
     }
 }
