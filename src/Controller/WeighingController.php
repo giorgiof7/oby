@@ -21,6 +21,7 @@ class WeighingController extends AbstractController
 
     /**
      * @Route("/weighing/show/{id}", name="show_weighing")
+     * @throws \Exception
      */
     public function show($id, CacheInterface $cache)
     {
