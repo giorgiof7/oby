@@ -1,8 +1,11 @@
 @import "helper/variables";
 
 @import "~bootstrap";
-@import "~font-awesome";
 
+// font-awesome 5
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 
 @import "layout/grid";
 @import "layout/header";
