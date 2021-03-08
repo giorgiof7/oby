@@ -10,6 +10,7 @@ import './styles/app.scss';
 
 // Bootstrap plugins
 import Dropdown from "bootstrap/js/src/dropdown";
+import Tooltip from "bootstrap/js/src/tooltip";
 
 // con questo construtto [].slice.call(arguments) converto oggetti o Nedelist in array
 const dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));

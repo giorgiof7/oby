@@ -27,7 +27,12 @@ class WeighingController extends AbstractController
      */
     public function homepage()
     {
-        return new Response("ciao");
+        $weighings = $this->entityManager->getRepository(Weighing::class)
+            ->findBy([], ['date' => 'ASC']);
+
+        return $this->render('homepage.html.twig', [
+            "weighings" => $weighings
+        ]);
     }
 
     /**
@@ -39,30 +44,12 @@ class WeighingController extends AbstractController
         $weighing = $this->entityManager->getRepository(Weighing::class)
             ->find($id);
 
-        if($weighing) {
-
-            $details = [
-                "belly: ". $weighing->getWaistCircumference(),
-                "weight: ". $weighing->getWeight(),
-                "leg: ". $weighing->getThighCircumference()
-            ];
-            $stringifyDetails = join("|||", $details);
-
-            $cachedDetails = $this->cache->get('details'.md5($stringifyDetails), function () use ($stringifyDetails){
-                return $stringifyDetails;
-            });
-        } else {
-            return $this->render('weighing/show.html.twig', [
-               "id" => null,
-               "details" => []
-            ]);
+        if(!$weighing) {
+            throw $this->createNotFoundException(sprintf('no weighing found with the id %d', $id));
         }
 
-
-
         return $this->render('weighing/show.html.twig', [
-            "id" => $id,
-            "details" => explode("|||", $cachedDetails)
+            "weighing" => $weighing
         ]);
     }
 
@@ -74,19 +61,21 @@ class WeighingController extends AbstractController
         $weighing = new Weighing();
 
         $weighing->setDate(new \DateTime('now'))
-            ->setArmCircumference(100)
-            ->setChestCircumference(120)
-            ->setHipsCircumference(200)
-            ->setThighCircumference(80)
-            ->setWaistCircumference(154)
-            ->setIsMilestone(false)
-            ->setWeight(98.8);
+            ->setArmCircumference(rand(80,200))
+            ->setChestCircumference(rand(100,150))
+            ->setHipsCircumference(rand(100,180))
+            ->setThighCircumference(rand(70,90))
+            ->setWaistCircumference(rand(150,155))
+            ->setIsMilestone(rand(0,1))
+            ->setWeight(rand(900,1000)/10);
 
         $this->entityManager->persist($weighing);
         $this->entityManager->flush();
 
+        $this->addFlash('success', 'Weighing successfully registered.');
+
         return new Response(sprintf(
-            'Well hallo! The shiny new question is id #%d, weight %d',
+            'Well hallo! The shiny new weight is id #%d, weight %d',
             $weighing->getId(),
             $weighing->getWeight()
         ));

@@ -1,18 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Weighing {{ id }}!{% endblock %}
+{% block title %}Weighing {{ weighing.id }}!{% endblock %}
 
 
 {% block body %}
-<h1>Weighing {{id}}</h1>
+<h1>Weighing {{ weighing.id }} {{ (weighing.isMilestone) ? ' <i class="fas fa-bullseye"></i>'  : '' }}</h1>
 
-<div>This is the future page to show the details of the weighing number {{id}}</div>
-
-<h3>Details ({{ details|length }})</h3>
+<h3>Date: {{ weighing.date | ago }}</h3>
 <ul>
-    {% for detail in details %}
-        <li>{{ detail }}</li>
-    {% endfor %}
+    <li>Weight: {{ weighing.weight }}</li>
 </ul>
 {% endblock %}
 
