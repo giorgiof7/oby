@@ -53,24 +53,8 @@ class WeighingController extends AbstractController
      */
     public function new(): Response
     {
-        $weighing = new Weighing();
-
-        $weighing->setArmCircumference(rand(80,200))
-            ->setChestCircumference(rand(100,150))
-            ->setHipsCircumference(rand(100,180))
-            ->setThighCircumference(rand(70,90))
-            ->setWaistCircumference(rand(150,155))
-            ->setWeight(rand(900,1000)/10);
-
-        $this->entityManager->persist($weighing);
-        $this->entityManager->flush();
-
         $this->addFlash('success', 'Weighing successfully registered.');
 
-        return new Response(sprintf(
-            'Well hallo! The shiny new weight is id #%d, weight %d',
-            $weighing->getId(),
-            $weighing->getWeight()
-        ));
+        return new Response('Future feature');
     }
 }
