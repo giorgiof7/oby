@@ -16,7 +16,7 @@
             <tbody>
             {% for weighing in weighings %}
                 <tr>
-                    <td>{{ weighing.date | ago }}</td>
+                    <td>{{ weighing.registeredAt | ago }}</td>
                     <td>{{ weighing.weight }}</td>
                     <td>{{ (weighing.isMilestone) ? '<i class="fas fa-bullseye" data-bs-toggle="tooltip" data-bs-placement="top" title="Milestone"></i>' : '' }}</td>
                     <td><a href="{{ path('show_weighing', {id: weighing.id}) }}" role="button" class="btn btn-outline-primary">Show</a></td>
