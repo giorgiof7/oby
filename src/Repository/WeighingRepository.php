@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Weighing;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -47,4 +48,26 @@ class WeighingRepository extends ServiceEntityRepository
         ;
     }
     */
+
+     /**
+      * @return Weighing[] Returns an array of Weighing objects
+      */
+    public function findAllMilestoneOrderedByNewest(): array
+    {
+        return $this->addIsMilestoneQueryBuilder()
+            ->orderBy('q.registeredAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    private function addIsMilestoneQueryBuilder(QueryBuilder $qb = null) : QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder($qb)
+            ->andWhere('q.isMilestone = 1');
+    }
+
+    private function getOrCreateQueryBuilder(QueryBuilder $qb = null): QueryBuilder
+    {
+        return $qb ?: $this->createQueryBuilder('q');
+    }
 }

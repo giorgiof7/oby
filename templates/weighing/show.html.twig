@@ -6,7 +6,7 @@
 {% block body %}
 <h1>Weighing {{ weighing.id }} {{ (weighing.isMilestone) ? ' <i class="fas fa-bullseye"></i>'  : '' }}</h1>
 
-<h3>Date: {{ weighing.date | ago }}</h3>
+<h3>Date: {{ weighing.registeredAt | ago }}</h3>
 <ul>
     <li>Weight: {{ weighing.weight }}</li>
 </ul>

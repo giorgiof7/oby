@@ -25,10 +25,10 @@ class WeighingController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function homepage()
+    public function homepage(): Response
     {
         $weighings = $this->entityManager->getRepository(Weighing::class)
-            ->findBy([], ['date' => 'ASC']);
+            ->findAllMilestoneOrderedByNewest();
 
         return $this->render('homepage.html.twig', [
             "weighings" => $weighings
@@ -37,16 +37,11 @@ class WeighingController extends AbstractController
 
     /**
      * @Route("/weighing/show/{id}", name="show_weighing")
-     * @throws \Exception
+     * @param Weighing $weighing
+     * @return Response
      */
-    public function show($id)
+    public function show(Weighing $weighing) :Response
     {
-        $weighing = $this->entityManager->getRepository(Weighing::class)
-            ->find($id);
-
-        if(!$weighing) {
-            throw $this->createNotFoundException(sprintf('no weighing found with the id %d', $id));
-        }
 
         return $this->render('weighing/show.html.twig', [
             "weighing" => $weighing
@@ -56,17 +51,15 @@ class WeighingController extends AbstractController
     /**
      * @Route("/weighing/new", name="new_weighing")
      */
-    public function new()
+    public function new(): Response
     {
         $weighing = new Weighing();
 
-        $weighing->setDate(new \DateTime('now'))
-            ->setArmCircumference(rand(80,200))
+        $weighing->setArmCircumference(rand(80,200))
             ->setChestCircumference(rand(100,150))
             ->setHipsCircumference(rand(100,180))
             ->setThighCircumference(rand(70,90))
             ->setWaistCircumference(rand(150,155))
-            ->setIsMilestone(rand(0,1))
             ->setWeight(rand(900,1000)/10);
 
         $this->entityManager->persist($weighing);

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\WeighingRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,9 +20,9 @@ class Weighing
     private $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
-    private $date;
+    private $registeredAt;
 
     /**
      * @ORM\Column(type="float")
@@ -55,26 +57,36 @@ class Weighing
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isMilestone;
+    private $isMilestone = false;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isInitialDate = false;
+
+    public function __construct()
+    {
+        $this->registeredAt = new DateTime('now');
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getRegisteredAt(): DateTimeInterface
     {
-        return $this->date;
+        return $this->registeredAt;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setRegisteredAt(DateTimeInterface $registeredAt): self
     {
-        $this->date = $date;
+        $this->registeredAt = $registeredAt;
 
         return $this;
     }
 
-    public function getWeight(): ?float
+    public function getWeight(): float
     {
         return $this->weight;
     }
@@ -146,7 +158,7 @@ class Weighing
         return $this;
     }
 
-    public function getIsMilestone(): ?bool
+    public function getIsMilestone(): bool
     {
         return $this->isMilestone;
     }
@@ -154,6 +166,18 @@ class Weighing
     public function setIsMilestone(bool $isMilestone): self
     {
         $this->isMilestone = $isMilestone;
+
+        return $this;
+    }
+
+    public function getIsInitialDate(): bool
+    {
+        return $this->isInitialDate;
+    }
+
+    public function setIsInitialDate(?bool $isInitialDate): self
+    {
+        $this->isInitialDate = $isInitialDate;
 
         return $this;
     }
