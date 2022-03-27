@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Factory\WeighingFactory;
+use App\Factory\WeightingFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -10,9 +10,9 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        WeighingFactory::createMany(20);
+        WeightingFactory::createMany(20);
 
-        WeighingFactory::new()
+        WeightingFactory::new()
             ->firstMeasurement()
             ->create();
     }

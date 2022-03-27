@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Weighing;
+use App\Entity\Weighting;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Weighing|null find($id, $lockMode = null, $lockVersion = null)
- * @method Weighing|null findOneBy(array $criteria, array $orderBy = null)
- * @method Weighing[]    findAll()
- * @method Weighing[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Weighting|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Weighting|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Weighting[]    findAll()
+ * @method Weighting[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class WeighingRepository extends ServiceEntityRepository
+class WeightingRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Weighing::class);
+        parent::__construct($registry, Weighting::class);
     }
 
     // /**
-    //  * @return Weighing[] Returns an array of Weighing objects
+    //  * @return Weighting[] Returns an array of Weighting objects
     //  */
     /*
     public function findByExampleField($value)
@@ -38,7 +38,7 @@ class WeighingRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Weighing
+    public function findOneBySomeField($value): ?Weighting
     {
         return $this->createQueryBuilder('w')
             ->andWhere('w.exampleField = :val')
@@ -50,7 +50,7 @@ class WeighingRepository extends ServiceEntityRepository
     */
 
      /**
-      * @return Weighing[] Returns an array of Weighing objects
+      * @return Weighting[] Returns an array of Weighting objects
       */
     public function findAllMilestoneOrderedByNewest(): array
     {

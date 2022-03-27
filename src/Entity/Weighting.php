@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\WeighingRepository;
+use App\Repository\WeightingRepository;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
- * @ORM\Entity(repositoryClass=WeighingRepository::class)
+ * @ORM\Entity(repositoryClass=WeightingRepository::class)
  */
-class Weighing
+class Weighting
 {
     use TimestampableEntity;
 

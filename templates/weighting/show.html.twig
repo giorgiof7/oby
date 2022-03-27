@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Weighting {{ weighting.id }}!{% endblock %}
+
+
+{% block body %}
+<h1>Weighting {{ weighting.id }} {{ (weighting.isMilestone) ? ' <i class="fas fa-bullseye"></i>'  : '' }}</h1>
+
+<h3>Date: {{ weighting.registeredAt | ago }}</h3>
+<ul>
+    <li>Weight: {{ weighting.weight }}</li>
+</ul>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {{ encore_entry_link_tags('weighting_show') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('weighting_show') }}
+{% endblock %}

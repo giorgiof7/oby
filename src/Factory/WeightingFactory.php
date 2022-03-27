@@ -2,29 +2,29 @@
 
 namespace App\Factory;
 
-use App\Entity\Weighing;
-use App\Repository\WeighingRepository;
+use App\Entity\Weighting;
+use App\Repository\WeightingRepository;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 
 /**
- * @method static Weighing|Proxy createOne(array $attributes = [])
- * @method static Weighing[]|Proxy[] createMany(int $number, $attributes = [])
- * @method static Weighing|Proxy find($criteria)
- * @method static Weighing|Proxy findOrCreate(array $attributes)
- * @method static Weighing|Proxy first(string $sortedField = 'id')
- * @method static Weighing|Proxy last(string $sortedField = 'id')
- * @method static Weighing|Proxy random(array $attributes = [])
- * @method static Weighing|Proxy randomOrCreate(array $attributes = [])
- * @method static Weighing[]|Proxy[] all()
- * @method static Weighing[]|Proxy[] findBy(array $attributes)
- * @method static Weighing[]|Proxy[] randomSet(int $number, array $attributes = [])
- * @method static Weighing[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
- * @method static WeighingRepository|RepositoryProxy repository()
- * @method Weighing|Proxy create($attributes = [])
+ * @method static Weighting|Proxy createOne(array $attributes = [])
+ * @method static Weighting[]|Proxy[] createMany(int $number, $attributes = [])
+ * @method static Weighting|Proxy find($criteria)
+ * @method static Weighting|Proxy findOrCreate(array $attributes)
+ * @method static Weighting|Proxy first(string $sortedField = 'id')
+ * @method static Weighting|Proxy last(string $sortedField = 'id')
+ * @method static Weighting|Proxy random(array $attributes = [])
+ * @method static Weighting|Proxy randomOrCreate(array $attributes = [])
+ * @method static Weighting[]|Proxy[] all()
+ * @method static Weighting[]|Proxy[] findBy(array $attributes)
+ * @method static Weighting[]|Proxy[] randomSet(int $number, array $attributes = [])
+ * @method static Weighting[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
+ * @method static WeightingRepository|RepositoryProxy repository()
+ * @method Weighting|Proxy create($attributes = [])
  */
-final class WeighingFactory extends ModelFactory
+final class WeightingFactory extends ModelFactory
 {
     public function __construct()
     {
@@ -58,12 +58,12 @@ final class WeighingFactory extends ModelFactory
     {
         // see https://github.com/zenstruck/foundry#initialization
         return $this
-            // ->afterInstantiate(function(Weighing $weighing) {})
+            // ->afterInstantiate(function(Weighting $weighting) {})
         ;
     }
 
     protected static function getClass(): string
     {
-        return Weighing::class;
+        return Weighting::class;
     }
 }

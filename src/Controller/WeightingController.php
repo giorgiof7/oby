@@ -4,14 +4,14 @@
 namespace App\Controller;
 
 
-use App\Entity\Weighing;
+use App\Entity\Weighting;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 
-class WeighingController extends AbstractController
+class WeightingController extends AbstractController
 {
     private $entityManager;
     private $cache;
@@ -27,33 +27,33 @@ class WeighingController extends AbstractController
      */
     public function homepage(): Response
     {
-        $weighings = $this->entityManager->getRepository(Weighing::class)
+        $weightings = $this->entityManager->getRepository(Weighting::class)
             ->findAllMilestoneOrderedByNewest();
 
         return $this->render('homepage.html.twig', [
-            "weighings" => $weighings
+            "weightings" => $weightings
         ]);
     }
 
     /**
-     * @Route("/weighing/show/{id}", name="show_weighing")
-     * @param Weighing $weighing
+     * @Route("/weighting/show/{id}", name="show_weighting")
+     * @param Weighting $weighting
      * @return Response
      */
-    public function show(Weighing $weighing) :Response
+    public function show(Weighting $weighting) :Response
     {
 
-        return $this->render('weighing/show.html.twig', [
-            "weighing" => $weighing
+        return $this->render('weighting/show.html.twig', [
+            "weighting" => $weighting
         ]);
     }
 
     /**
-     * @Route("/weighing/new", name="new_weighing")
+     * @Route("/weighting/new", name="new_weighting")
      */
     public function new(): Response
     {
-        $this->addFlash('success', 'Weighing successfully registered.');
+        $this->addFlash('success', 'Weighting successfully registered.');
 
         return new Response('Future feature');
     }
