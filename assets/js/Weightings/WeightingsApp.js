@@ -56,15 +56,9 @@ export default class WeightingsApp extends Component {
         // SHORT WAY - remove the weight log without mutating state... filter return a new array
         this.setState((prevState) => {
             return {
-                weightLogs: prevState.state.weightLogs.filter(weightLog => weightLog.id !== id)
+                weightLogs: prevState.weightLogs.filter(weightLog => weightLog.id !== id)
             }
         });
-    }
-
-    handleSunflowerChange(sunflowerCount) {
-        this.setState({
-            numberOfSunflowers: sunflowerCount,
-        })
     }
 
     handleSunflowerChange(sunflowerCount) {
