@@ -67,6 +67,12 @@ export default class WeightingsApp extends Component {
         })
     }
 
+    handleSunflowerChange(sunflowerCount) {
+        this.setState({
+            numberOfSunflowers: sunflowerCount,
+        })
+    }
+
     render() {
         return (
             <Weightings
