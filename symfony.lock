@@ -145,6 +145,9 @@
             "config/packages/nelmio_cors.yaml"
         ]
     },
+    "nesbot/carbon": {
+        "version": "2.57.0"
+    },
     "nikic/php-parser": {
         "version": "v4.10.4"
     },
@@ -388,9 +391,6 @@
         "version": "v5.4.5"
     },
     "symfony/security-csrf": {
-        "version": "v5.4.3"
-    },
-    "symfony/security-guard": {
         "version": "v5.4.3"
     },
     "symfony/security-http": {
