@@ -2,13 +2,22 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\WeightingRepository;
+use Carbon\Carbon;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+ * @ApiResource(
+ *     collectionOperations={"get", "post"},
+ *     itemOperations={"get", "put"},
+ *     normalizationContext={"groups"={"weightings:read"}},
+ *     shortName="weights"
+ * )
  * @ORM\Entity(repositoryClass=WeightingRepository::class)
  */
 class Weighting
@@ -29,6 +38,7 @@ class Weighting
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"weightings:read"})
      */
     private $weight;
 
@@ -69,7 +79,7 @@ class Weighting
 
     public function __construct()
     {
-        $this->registeredAt = new DateTime('now');
+        $this->registeredAt = new DateTime();
     }
 
     public function getId(): ?int
@@ -80,6 +90,11 @@ class Weighting
     public function getRegisteredAt(): DateTimeInterface
     {
         return $this->registeredAt;
+    }
+
+    public function getRegisteredAtAgo(): string
+    {
+        return Carbon::instance($this->getRegisteredAt())->diffForHumans();
     }
 
     public function setRegisteredAt(DateTimeInterface $registeredAt): self
